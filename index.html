@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>دفتر التداول — My Trading Journey</title>
+<style>
+:root{--bg:#f4f1ea;--card:#fff;--ink:#1b2420;--mut:#6b7a73;--line:#e3e0d6;--g:#145a46;--g2:#0e3f31;--gold:#c9a24b;--win:#17855f;--loss:#c0392b;--soft:#e9f1ee;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111815;--card:#1a2420;--ink:#e9eeeb;--mut:#93a39b;--line:#2b3832;--soft:#22302a;--g:#2a9a77;--win:#3ac28f;--loss:#ef6a5b}}
+:root[data-theme="dark"]{--bg:#111815;--card:#1a2420;--ink:#e9eeeb;--mut:#93a39b;--line:#2b3832;--soft:#22302a;--g:#2a9a77;--win:#3ac28f;--loss:#ef6a5b}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Tahoma,"Noto Naskh Arabic",system-ui,sans-serif;display:flex;min-height:100vh}
+aside{width:230px;background:linear-gradient(180deg,#145a46,#0b2f25);color:#fff;padding:20px 14px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+.brand{display:flex;gap:10px;align-items:center;margin-bottom:26px}
+.logo{width:44px;height:44px;border-radius:12px;background:var(--gold);color:#0b2f25;display:grid;place-items:center;font-weight:800}
+.brand b{font-family:Georgia,serif;font-size:16px;line-height:1.1;display:block}.brand small{opacity:.7;font-size:11px}
+nav button{display:block;width:100%;text-align:right;background:none;border:0;color:#cfe3da;padding:12px 14px;border-radius:10px;font:inherit;cursor:pointer;margin-bottom:4px}
+nav button.on,nav button:hover{background:rgba(255,255,255,.12);color:#fff}
+.yr{margin-top:auto;border-top:1px solid rgba(255,255,255,.15);padding-top:14px;font-size:13px;opacity:.9}
+.yr .n{font-size:26px;font-weight:700;margin:4px 0}
+main{flex:1;padding:24px;min-width:0;max-width:1200px;position:relative;z-index:1}
+h1{margin:0 0 4px;font-size:26px}.sub{color:var(--mut);font-size:13px;margin-bottom:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.bar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px}
+.btn{background:var(--g);color:#fff;border:0;border-radius:10px;padding:10px 16px;font:inherit;cursor:pointer}
+.btn.o{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.btn.d{background:var(--loss)}
+.dnav{display:flex;gap:8px;align-items:center;justify-content:center;border-top:3px solid var(--gold)}
+.dnav b{font-size:18px;min-width:220px;text-align:center}
+.ib{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--soft);color:var(--ink);cursor:pointer;font-size:16px}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 11px;width:100%}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}
+.kpi{background:var(--soft);border-radius:12px;padding:12px 14px}.kpi small{color:var(--mut);display:block;font-size:12px}.kpi b{font-size:20px}
+.win{color:var(--win)}.loss{color:var(--loss)}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.slot{min-height:150px;border:1.5px dashed var(--line);border-radius:14px;background:var(--card);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--mut);font-size:13px;padding:12px}
+.slot:hover{border-color:var(--g)}
+.slot .p{width:38px;height:38px;border-radius:50%;background:var(--soft);color:var(--g);display:grid;place-items:center;font-size:20px}
+.slot.f{border-style:solid;align-items:stretch;justify-content:flex-start;color:var(--ink);border-top:4px solid var(--win)}
+.slot.f.l{border-top-color:var(--loss)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tag{font-size:11px;padding:2px 8px;border-radius:20px;background:var(--soft);color:var(--g)}
+.tag.s{background:#f8e3e0;color:var(--loss)}
+.pl{font-size:22px;font-weight:700}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin-top:14px}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:8px 6px;text-align:right;border-bottom:1px solid var(--line)}th{color:var(--mut);font-weight:600}
+.scroll{overflow-x:auto}
+h3{margin:0 0 10px;font-size:15px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;padding:14px;z-index:9}
+.modal.on{display:flex}
+.mb{background:var(--card);border-radius:18px;width:min(720px,100%);max-height:92vh;overflow:auto;padding:20px}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}.fg .w{grid-column:1/-1}
+.fg label{font-size:12px;color:var(--mut);display:block;margin-bottom:4px}
+.hero{position:absolute;top:0;left:0;width:55%;height:150px;opacity:.38;pointer-events:none;z-index:-1;-webkit-mask-image:linear-gradient(to right,#000 30%,transparent);mask-image:linear-gradient(to right,#000 30%,transparent)}
+.deco{position:fixed;bottom:0;left:0;right:230px;height:190px;opacity:.09;pointer-events:none;z-index:0;-webkit-mask-image:linear-gradient(to top,#000 40%,transparent);mask-image:linear-gradient(to top,#000 40%,transparent)}
+.sdeco{flex:1;min-height:60px;opacity:.45;margin:10px -6px;overflow:hidden}
+.kpi,.slot,.card{transition:transform .2s,box-shadow .2s}.slot:hover,.kpi:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(20,90,70,.10)}
+@media(max-width:760px){.deco{right:0;height:130px}.sdeco{display:none}.hero{width:70%;height:110px}body{flex-direction:column}aside{width:100%;height:auto;position:static;padding:12px}.yr{display:none}.brand{margin-bottom:10px}nav{display:flex;gap:4px;overflow-x:auto}nav button{white-space:nowrap;width:auto}main{padding:14px}.fg{grid-template-columns:1fr}.dnav b{min-width:0;font-size:15px}}
+</style>
+</head>
+<body>
+<aside>
+  <div class="brand"><div class="logo">MT</div><div><b>My Trading Journey</b><small>دفتر تداولك الشخصي</small></div></div>
+  <nav id="nav"></nav>
+  <div class="sdeco" id="sdeco"></div>
+  <div class="yr"><div>ملخص السنة</div><div class="n" id="ysum">0.00</div><div id="ycnt"></div></div>
+</aside>
+<main id="app"></main>
+<div class="deco" id="deco"></div>
+
+<div class="modal" id="modal"><div class="mb">
+  <div class="row"><h2 style="margin:0" id="mt">إضافة صفقة</h2><button class="ib" onclick="closeM()">×</button></div>
+  <div class="sub" id="ms"></div>
+  <div class="fg">
+    <div><label>الأصل / الرمز *</label><input id="f_symbol" placeholder="مثال: XAUUSD"></div>
+    <div><label>نوع الصفقة *</label><select id="f_type"><option value="buy">شراء (Buy)</option><option value="sell">بيع (Sell)</option></select></div>
+    <div><label>تاريخ ووقت الدخول *</label><input type="datetime-local" id="f_tin"></div>
+    <div><label>سعر الدخول *</label><input type="number" step="any" id="f_entry"></div>
+    <div><label>وقف الخسارة</label><input type="number" step="any" id="f_sl"></div>
+    <div><label>الهدف</label><input type="number" step="any" id="f_tp"></div>
+    <div><label>تاريخ ووقت الخروج</label><input type="datetime-local" id="f_tout"></div>
+    <div><label>سعر الخروج</label><input type="number" step="any" id="f_exit"></div>
+    <div><label>الحجم / اللوت</label><input type="number" step="any" id="f_size"></div>
+    <div><label>الربح والخسارة (اتركه فارغًا ليُحسب تقريبيًا)</label><input type="number" step="any" id="f_pnl" placeholder="النتيجة الفعلية"></div>
+    <div><label>الحالة النفسية</label><select id="f_mood"><option value="">اختر...</option><option>هادئ</option><option>واثق</option><option>متوتر</option><option>خوف</option><option>طمع</option><option>انتقام</option><option>ملل</option></select></div>
+    <div><label>وصف الحالة</label><input id="f_mn" placeholder="كيف كنت تشعر؟"></div>
+    <div class="w"><label>الأخطاء التي ارتكبتها (افصل بينها بفاصلة)</label><textarea id="f_err" rows="2" placeholder="مثال: دخول مبكر، تحريك وقف الخسارة"></textarea></div>
+    <div class="w"><label>ملاحظات</label><textarea id="f_notes" rows="2"></textarea></div>
+    <div class="w"><label>صورة الشارت (اختياري)</label><input type="file" accept="image/*" id="f_img" onchange="pickImg(this)"><div id="imgp"></div></div>
+    <div class="w" id="riskh" style="font-size:13px;color:var(--g)"></div>
+  </div>
+  <div class="row"><button class="btn" onclick="saveT()">حفظ الصفقة</button><button class="btn o" style="flex:1" onclick="closeM()">إلغاء</button><button class="btn d" id="delb" onclick="delT()">حذف</button></div>
+</div></div>
+<input type="file" id="imp" accept=".json" hidden>
+
+<script>
+const MAX=10, MON=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+const iso=d=>{const x=new Date(d);return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0')};
+const load=()=>{try{return JSON.parse(localStorage.getItem('tj_trades')||'[]')}catch(e){return[]}};
+let S={view:'day',date:iso(new Date()),year:new Date().getFullYear(),q:'',trades:load(),cur:null,slot:1};
+const save=()=>{try{localStorage.setItem('tj_trades',JSON.stringify(S.trades))}catch(e){}};
+let C=(()=>{try{return JSON.parse(localStorage.getItem('tj_cfg')||'{}')}catch(e){return{}}})();
+const idb=()=>new Promise((res,rej)=>{try{const r=indexedDB.open('tj_img',1);r.onupgradeneeded=()=>r.result.createObjectStore('i');r.onsuccess=()=>res(r.result);r.onerror=()=>rej()}catch(e){rej()}});
+const imgOp=async(m,k,v)=>{try{const d=await idb();return await new Promise(res=>{const o=d.transaction('i',m==='get'?'readonly':'readwrite').objectStore('i');const q=m==='get'?o.get(k):m==='put'?o.put(v,k):o.delete(k);q.onsuccess=()=>res(q.result);q.onerror=()=>res(null)})}catch(e){return null}};
+const bal=()=>(C.bal||0)+stats(S.trades).net;
+function pickImg(el){const f=el.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,1100/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);S.img=c.toDataURL('image/jpeg',.72);showImg()};im.src=r.result};r.readAsDataURL(f)}
+function showImg(){$('imgp').innerHTML=S.img?`<img src="${S.img}" style="max-width:100%;border-radius:10px;margin-top:8px"><br><button class="btn o" style="margin-top:6px;padding:4px 10px" onclick="S.img=null;$('f_img').value='';showImg()">إزالة الصورة</button>`:''}
+function saveCfg(){C={bal:parseFloat($('c_bal').value)||0,risk:parseFloat($('c_risk').value)||0};try{localStorage.setItem('tj_cfg',JSON.stringify(C))}catch(e){}render()}
+const $=i=>document.getElementById(i);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const n2=n=>Number(n).toLocaleString('en',{minimumFractionDigits:2,maximumFractionDigits:2});
+const sg=n=>(n>0?'+':'')+n2(n);
+const cls=n=>n>0?'win':n<0?'loss':'';
+const val=t=>typeof t.pnl==='number'?t.pnl:null;
+
+function stats(L){
+  const p=L.map(val).filter(v=>v!==null),w=p.filter(v=>v>0),l=p.filter(v=>v<0);
+  const net=p.reduce((a,b)=>a+b,0),gp=w.reduce((a,b)=>a+b,0),gl=-l.reduce((a,b)=>a+b,0);
+  let eq=0,pk=0,dd=0;p.forEach(v=>{eq+=v;pk=Math.max(pk,eq);dd=Math.max(dd,pk-eq)});
+  return{n:L.length,w:w.length,l:l.length,net,wr:p.length?w.length/p.length*100:null,pf:gl?gp/gl:(gp?Infinity:null),
+    aw:w.length?gp/w.length:0,al:l.length?-gl/l.length:0,ex:p.length?net/p.length:0,dd,best:p.length?Math.max(...p):0,worst:p.length?Math.min(...p):0}
+}
+const calcPnl=t=>{if(t.exit==null||t.entry==null)return null;const d=t.type==='buy'?1:-1;return +((t.exit-t.entry)*d*(t.size||1)).toFixed(2)};
+const calcR=t=>{if(t.sl==null||t.exit==null)return null;const r=Math.abs(t.entry-t.sl);return r?((t.exit-t.entry)*(t.type==='buy'?1:-1)/r):null};
+
+function nav(){
+  const items=[['day','اليوميات'],['rep','التقارير'],['log','البحث والسجل'],['set','الإعدادات'],['bak','النسخ الاحتياطي']];
+  $('nav').innerHTML=items.map(([k,v])=>`<button class="${S.view===k?'on':''}" onclick="go('${k}')">${v}</button>`).join('');
+  const y=S.trades.filter(t=>t.date.startsWith(String(S.year))),s=stats(y);
+  $('ysum').textContent=n2(s.net);$('ycnt').textContent=y.length+' صفقة مسجلة'+(C.bal?' · الرصيد '+n2(bal()):'');
+}
+const go=v=>{S.view=v;render()};
+function candles(n,seed,h,up,dn){let r=seed;const rnd=()=>(r=(r*9301+49297)%233280)/233280;let pr=h*.5,o='';
+  for(let i=0;i<n;i++){const op=pr,cl=Math.max(h*.15,Math.min(h*.85,op+(rnd()-.47)*h*.24)),hi=Math.max(op,cl)+rnd()*h*.09,lo=Math.min(op,cl)-rnd()*h*.09,x=i*14+7,c=cl>=op?up:dn;
+    o+=`<line x1="${x}" x2="${x}" y1="${(h-hi).toFixed(1)}" y2="${(h-lo).toFixed(1)}" style="stroke:${c}" stroke-width="1.6"/><rect x="${x-4.5}" y="${(h-Math.max(op,cl)).toFixed(1)}" width="9" height="${Math.max(3,Math.abs(cl-op)).toFixed(1)}" rx="1.5" style="fill:${c}"/>`;pr=cl}
+  return `<svg viewBox="0 0 ${n*14} ${h}" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" aria-hidden="true">${o}</svg>`}
+const SEED={day:7,rep:21,log:42,bak:63,set:84};
+function render(){nav();$('app').innerHTML=`<div class="hero">${candles(30,SEED[S.view]||7,150,'var(--win)','var(--loss)')}</div>`+({day:vDay,rep:vRep,log:vLog,bak:vBak,set:vSet})[S.view]()}
+
+function vDay(){
+  const L=S.trades.filter(t=>t.date===S.date).sort((a,b)=>a.slot-b.slot),s=stats(L);
+  const dt=new Date(S.date+'T00:00').toLocaleDateString('ar-EG',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const yc=S.trades.filter(t=>t.date.startsWith(S.date.slice(0,4))).length;
+  let slots='';
+  for(let i=1;i<=MAX;i++){
+    const t=L.find(x=>x.slot===i);
+    if(!t)slots+=`<div class="slot" onclick="openM(${i})"><div class="p">+</div><b>الصفقة ${i}</b><span>اضغط لتوثيق فرصة جديدة</span></div>`;
+    else{const v=val(t),r=calcR(t);slots+=`<div class="slot f ${v<0?'l':''}" onclick="openM(${i},'${t.id}')">
+      <div class="row"><b>${i}. ${esc(t.symbol)}</b><span>${t.img?'📷 ':''}<span class="tag ${t.type==='sell'?'s':''}">${t.type==='buy'?'شراء':'بيع'}</span></span></div>
+      <div class="pl ${cls(v)}">${v===null?'—':sg(v)}</div>
+      <div style="font-size:12px;color:var(--mut)">دخول ${t.entry} ← خروج ${t.exit??'مفتوحة'}${r!==null?` · ${r.toFixed(2)}R`:''}</div>
+      ${t.mood?`<div style="font-size:12px">الحالة: ${esc(t.mood)}</div>`:''}
+      ${t.err?`<div style="font-size:12px;color:var(--loss)">⚠ ${esc(t.err)}</div>`:''}</div>`}
+  }
+  return `<div class="bar"><div><h1>يوميات التداول</h1><div class="sub">حتى ${MAX} صفقات موثّقة كل يوم</div></div>
+    <div style="display:flex;gap:8px"><button class="btn o" onclick="S.date=iso(new Date());render()">اليوم</button><button class="btn" onclick="openM()">+ صفقة جديدة</button></div></div>
+  <div class="card dnav"><button class="ib" onclick="shift(1)">›</button><div style="text-align:center"><b>${dt}</b><br><input type="date" value="${S.date}" onchange="S.date=this.value||S.date;render()" style="width:auto;margin-top:6px"><div class="sub" style="margin:6px 0 0">${yc} صفقة من 3650 هذه السنة</div></div><button class="ib" onclick="shift(-1)">‹</button></div>
+  <div class="kpis"><div class="kpi"><small>صافي اليوم</small><b class="${cls(s.net)}">${n2(s.net)}</b></div><div class="kpi"><small>الصفقات</small><b>${s.n} / ${MAX}</b></div><div class="kpi"><small>الرابحة / الخاسرة</small><b>${s.w} / ${s.l}</b></div><div class="kpi"><small>نسبة النجاح</small><b>${s.wr===null?'—':s.wr.toFixed(0)+'%'}</b></div></div>
+  <div class="slots">${slots}</div>`;
+}
+function shift(d){const x=new Date(S.date+'T00:00');x.setDate(x.getDate()+d);S.date=iso(x);S.year=x.getFullYear();render()}
+
+function openM(slot,id){
+  if(!slot){const used=S.trades.filter(t=>t.date===S.date).map(t=>t.slot);slot=[1,2,3,4,5,6,7,8,9,10].find(i=>!used.includes(i));if(!slot)return alert('اكتملت الـ 10 صفقات لهذا اليوم')}
+  const t=id?S.trades.find(x=>x.id===id):null;S.cur=id||null;S.slot=slot;
+  const d=t?t.date:S.date;
+  S.id=t?t.id:Date.now().toString(36);S.img=undefined;$('imgp').innerHTML='';$('f_img').value='';
+  if(t?.img)imgOp('get',S.id).then(u=>{if(u&&S.id===t.id){S.img=u;showImg()}});
+  $('riskh').textContent=(C.bal&&C.risk)?`المخاطرة المقترحة: ${n2(bal()*C.risk/100)} (${C.risk}% من رصيدك الحالي ${n2(bal())})`:'';
+  $('mt').textContent=t?'تعديل صفقة':'إضافة صفقة';$('ms').textContent=d+' · الخانة '+slot;
+  const set=(k,v)=>$('f_'+k).value=v??'';
+  set('symbol',t?.symbol);set('type',t?.type||'buy');set('tin',t?.tin||d+'T09:00');set('entry',t?.entry);set('sl',t?.sl);set('tp',t?.tp);
+  set('tout',t?.tout);set('exit',t?.exit);set('size',t?.size);set('pnl',t?.pnl);set('mood',t?.mood);set('mn',t?.mn);set('err',t?.err);set('notes',t?.notes);
+  $('delb').style.display=t?'':'none';$('modal').classList.add('on');
+}
+const closeM=()=>$('modal').classList.remove('on');
+function saveT(){
+  const g=k=>$('f_'+k).value.trim(),num=k=>g(k)===''?null:parseFloat(g(k));
+  if(!g('symbol')||g('entry')===''||!g('tin'))return alert('أكمل الحقول المطلوبة (*)');
+  const old=S.cur?S.trades.find(x=>x.id===S.cur):null;
+  const t={id:S.id,date:old?.date||S.date,slot:S.slot,symbol:g('symbol').toUpperCase(),type:g('type'),tin:g('tin'),tout:g('tout'),
+    entry:num('entry'),sl:num('sl'),tp:num('tp'),exit:num('exit'),size:num('size'),mood:g('mood'),mn:g('mn'),err:g('err'),notes:g('notes')};
+  t.pnl=num('pnl');t.img=S.img===undefined?!!old?.img:!!S.img;if(S.img)imgOp('put',t.id,S.img);else if(S.img===null)imgOp('del',t.id);if(t.pnl===null)t.pnl=calcPnl(t);
+  S.trades=S.trades.filter(x=>x.id!==t.id).concat(t);save();closeM();render();
+}
+function delT(){if(confirm('حذف هذه الصفقة؟')){imgOp('del',S.cur);S.trades=S.trades.filter(x=>x.id!==S.cur);save();closeM();render()}}
+
+function groupTable(L,keyFn,title){
+  const m={};L.forEach(t=>{const k=keyFn(t);if(k)(m[k]=m[k]||[]).push(t)});
+  const rows=Object.entries(m).map(([k,v])=>[k,stats(v)]).sort((a,b)=>b[1].net-a[1].net);
+  return `<div class="card"><h3>${title}</h3><div class="scroll"><table><tr><th>البند</th><th>صفقات</th><th>نجاح</th><th>الصافي</th></tr>${rows.map(([k,s])=>`<tr><td>${esc(k)}</td><td>${s.n}</td><td>${s.wr===null?'—':s.wr.toFixed(0)+'%'}</td><td class="${cls(s.net)}">${sg(s.net)}</td></tr>`).join('')||'<tr><td colspan=4 style="color:var(--mut)">لا بيانات</td></tr>'}</table></div></div>`;
+}
+function vRep(){
+  const L=S.trades.filter(t=>t.date.startsWith(String(S.year))).sort((a,b)=>a.date.localeCompare(b.date)||a.slot-b.slot),s=stats(L);
+  const yrs=[...new Set([S.year,new Date().getFullYear(),...S.trades.map(t=>+t.date.slice(0,4))])].sort();
+  const mo=MON.map((_,i)=>stats(L.filter(t=>+t.date.slice(5,7)===i+1)));
+  const mx=Math.max(1,...mo.map(m=>Math.abs(m.net)));
+  const bars=mo.map((m,i)=>{const h=Math.abs(m.net)/mx*80,x=10+i*48;return `<rect x="${x}" y="${m.net>=0?100-h:100}" width="34" height="${h}" rx="4" fill="${m.net>=0?'var(--win)':'var(--loss)'}"/><text x="${x+17}" y="128" font-size="9" text-anchor="middle" fill="var(--mut)">${MON[i].slice(0,4)}</text>`}).join('');
+  let eq=0;const pts=[[0,0]];L.forEach((t,i)=>{eq+=val(t)||0;pts.push([i+1,eq])});
+  const ys=pts.map(p=>p[1]),lo=Math.min(...ys),hi=Math.max(...ys),rg=(hi-lo)||1,nx=Math.max(1,pts.length-1);
+  const line=pts.map(p=>`${(p[0]/nx*580+10).toFixed(1)},${(110-(p[1]-lo)/rg*100).toFixed(1)}`).join(' ');
+  const errs={};L.forEach(t=>(t.err||'').split(/[,،\n]/).map(x=>x.trim()).filter(Boolean).forEach(e=>errs[e]=(errs[e]||0)+1));
+  const et=Object.entries(errs).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  const K=(a,b,c='')=>`<div class="kpi"><small>${a}</small><b class="${c}">${b}</b></div>`;
+  return `<div class="bar"><div><h1>تقارير الصفقات</h1><div class="sub">تحليل أدائك السنوي</div></div>
+    <select style="width:auto" onchange="S.year=+this.value;render()">${yrs.map(y=>`<option ${y===S.year?'selected':''}>${y}</option>`).join('')}</select></div>
+  <div class="kpis">${K('صافي السنة',n2(s.net),cls(s.net))}${K('عدد الصفقات',s.n)}${K('نسبة النجاح',s.wr===null?'—':s.wr.toFixed(1)+'%')}${K('معامل الربح',s.pf===null?'—':s.pf===Infinity?'∞':s.pf.toFixed(2))}${K('متوسط الربح',n2(s.aw),'win')}${K('متوسط الخسارة',n2(s.al),'loss')}${K('التوقع لكل صفقة',n2(s.ex),cls(s.ex))}${K('أقصى تراجع',n2(s.dd),'loss')}${K('أفضل صفقة',n2(s.best),'win')}${K('أسوأ صفقة',n2(s.worst),'loss')}${K('العائد على الرصيد',C.bal?(s.net/(C.bal+stats(S.trades.filter(t=>t.date<S.year+'-01-01')).net)*100).toFixed(1)+'%':'حدّد الرصيد من الإعدادات',C.bal?cls(s.net):'')}</div>
+  <div class="grid2"><div class="card"><h3>منحنى الرصيد التراكمي</h3><svg viewBox="0 0 600 120" width="100%"><polyline fill="none" stroke="var(--g)" stroke-width="2.5" points="${line}"/></svg></div>
+  <div class="card"><h3>الصافي الشهري</h3><svg viewBox="0 0 600 135" width="100%"><line x1="0" x2="600" y1="100" y2="100" stroke="var(--line)"/>${bars}</svg></div></div>
+  <div class="grid2">${groupTable(L,t=>MON[+t.date.slice(5,7)-1],'تفصيل الأشهر')}${groupTable(L,t=>t.symbol,'حسب الأصل')}${groupTable(L,t=>t.mood,'حسب الحالة النفسية')}${groupTable(L,t=>t.type==='buy'?'شراء':'بيع','شراء مقابل بيع')}
+  <div class="card"><h3>أكثر الأخطاء تكرارًا</h3><table>${et.map(([e,c])=>`<tr><td>${esc(e)}</td><td>${c} مرة</td></tr>`).join('')||'<tr><td style="color:var(--mut)">لا أخطاء مسجلة</td></tr>'}</table></div></div>`;
+}
+
+function vLog(){
+  const q=S.q.toLowerCase();
+  const L=S.trades.filter(t=>!q||[t.symbol,t.mood,t.err,t.notes,t.date].join(' ').toLowerCase().includes(q)).sort((a,b)=>b.date.localeCompare(a.date)||b.slot-a.slot);
+  return `<div class="bar"><div><h1>البحث والسجل</h1><div class="sub">${L.length} صفقة</div></div><button class="btn o" onclick="csv()">تصدير CSV</button></div>
+  <input placeholder="ابحث بالرمز أو التاريخ أو الأخطاء..." value="${esc(S.q)}" oninput="S.q=this.value;logUpd(this)" style="margin-bottom:12px">
+  <div class="card scroll"><table><tr><th>التاريخ</th><th>الرمز</th><th>النوع</th><th>دخول</th><th>خروج</th><th>النتيجة</th><th>الحالة</th><th></th></tr>
+  ${L.slice(0,300).map(t=>`<tr><td>${t.date}</td><td>${esc(t.symbol)}</td><td>${t.type==='buy'?'شراء':'بيع'}</td><td>${t.entry}</td><td>${t.exit??'—'}</td><td class="${cls(val(t))}">${val(t)===null?'—':sg(val(t))}</td><td>${esc(t.mood)}</td><td><button class="btn o" style="padding:4px 10px" onclick="S.date='${t.date}';openM(${t.slot},'${t.id}')">فتح</button></td></tr>`).join('')||'<tr><td colspan=8 style="color:var(--mut)">لا توجد صفقات</td></tr>'}</table></div>`;
+}
+function logUpd(el){const p=el.selectionStart;render();const i=document.querySelector('main input');i.focus();i.setSelectionRange(p,p)}
+function dl(name,txt,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type}));a.download=name;a.click()}
+function csv(){
+  const h=['date','slot','symbol','type','entry','sl','tp','exit','size','pnl','mood','errors','notes'];
+  const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+  dl('trades.csv','\ufeff'+[h.join(',')].concat(S.trades.map(t=>[t.date,t.slot,t.symbol,t.type,t.entry,t.sl,t.tp,t.exit,t.size,t.pnl,t.mood,t.err,t.notes].map(q).join(','))).join('\n'),'text/csv');
+}
+function vSet(){return `<h1>الإعدادات</h1><div class="sub">خاصة بحسابك أنت فقط</div>
+  <div class="card"><div class="fg"><div><label>الرصيد الابتدائي</label><input type="number" id="c_bal" value="${C.bal??''}"></div><div><label>نسبة المخاطرة لكل صفقة %</label><input type="number" step="any" id="c_risk" value="${C.risk??''}"></div></div><button class="btn" onclick="saveCfg()">حفظ</button>
+  <div class="sub" style="margin:12px 0 0">الرصيد الحالي = الرصيد الابتدائي + صافي كل صفقاتك. نسبة المخاطرة تظهر كمبلغ مقترح داخل نافذة الصفقة.</div></div>
+  <div class="card" style="margin-top:14px"><h3>مشاركة الدفتر</h3><div style="font-size:13px;color:var(--mut);line-height:1.8">أي شخص تبعتله الرابط يحصل على دفتر خاص به وفاضي، وبياناته محفوظة في متصفحه هو ولا تظهر لك ولا لغيره. صور الشارت لا تدخل في النسخة الاحتياطية JSON.</div></div>`}
+function vBak(){return `<h1>النسخ الاحتياطي</h1><div class="sub">بياناتك محفوظة في متصفحك فقط — احتفظ بنسخة دورية.</div>
+  <div class="card" style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" onclick="dl('trading-journal-backup.json',JSON.stringify(S.trades),'application/json')">تنزيل نسخة (JSON)</button><button class="btn o" onclick="$('imp').click()">استرجاع من ملف</button><button class="btn d" onclick="if(confirm('مسح كل البيانات؟')){S.trades=[];save();render()}">مسح كل البيانات</button></div>`}
+$('imp').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const a=JSON.parse(r.result);if(Array.isArray(a)){S.trades=a;save();render()}}catch(x){alert('ملف غير صالح')}};r.readAsText(f)};
+$('sdeco').innerHTML=candles(16,11,160,'#6fe3b5','#ff9b8e');$('deco').innerHTML=candles(90,5,190,'var(--win)','var(--loss)');
+render();
+</script>
+</body>
+</html>
